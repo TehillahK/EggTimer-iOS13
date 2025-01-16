@@ -25,38 +25,35 @@ class ViewController: UIViewController {
     
 
     @IBAction func hardnessSelected(_ sender: UIButton) {
+        titleLabel.text = sender.currentTitle!
+        progressView.progress = 0.0
         timer.invalidate()
+        timer = Timer()
         let hardness = sender.currentTitle!
+        
         
         timeLeft = eggtimes[hardness]!
         totalTime = timeLeft
-        
-        
-        counterDown()
-        
-        
-        
-       
-        
-        
-    }
-    
-    func counterDown(){
+        timePassed = 0.0
         
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         
         
+        
     }
     
+    
+    
     @objc func updateCounter() {
-        progressView.progress = Float(timePassed/totalTime)
+        
         //example functionality
         if timeLeft > 0 {
             print("\(timeLeft)")
-          
-            timeLeft -= 1
-            timePassed += 1
+            timePassed += 1.0
+            progressView.progress = Float(timePassed/totalTime)
+            timeLeft -= 1.0
+           
         }else{
             timer.invalidate()
             titleLabel.text = "The Egg is ready"
