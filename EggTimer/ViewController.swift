@@ -24,9 +24,9 @@ class ViewController: UIViewController {
     var totalTime = 0.0
     
     let eggtimes = [
-        "Soft": 3.0,
-        "Medium": 4.0,
-        "Hard": 7.0
+        "Soft": 300.0,
+        "Medium": 480.0,
+        "Hard": 720.0
     ]
     
     var timer = Timer()
