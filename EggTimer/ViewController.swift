@@ -7,14 +7,22 @@
 //
 
 import UIKit
+import AVFoundation
+
 
 class ViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var progressView: UIProgressView!
+    
+    var player: AVAudioPlayer!
+   
     var timeLeft = 60.0
+    
     var timePassed = 0.0
+    
     var totalTime = 0.0
+    
     let eggtimes = [
         "Soft": 3.0,
         "Medium": 4.0,
@@ -55,7 +63,11 @@ class ViewController: UIViewController {
             timeLeft -= 1.0
            
         }else{
+           
             timer.invalidate()
+            let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3")
+            player = try! AVAudioPlayer(contentsOf: url!)
+            player.play()
             titleLabel.text = "The Egg is ready"
         }
         
